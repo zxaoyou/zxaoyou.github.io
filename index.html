@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>郑馨 - 个人简历</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --light-text: #777;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        header {
+            display: flex;
+            align-items: center;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--primary-color), #1a2530);
+            color: white;
+        }
+        
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            margin-right: 40px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header-content {
+            flex: 1;
+        }
+        
+        .header-content h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header-content h2 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: var(--light-color);
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .tag {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 40px;
+        }
+        
+        .left-column, .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--light-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        h3 i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .timeline-item {
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border: 2px solid var(--secondary-color);
+            border-radius: 50%;
+            background: white;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 22px;
+            width: 2px;
+            height: calc(100% + 10px);
+            background: var(--secondary-color);
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+            font-size: 1.05rem;
+        }
+        
+        .timeline-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+            color: var(--dark-color);
+        }
+        
+        .timeline-subtitle {
+            color: var(--light-text);
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        
+        .project-item, .award-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .project-item:last-child, .award-item:last-child {
+            border-bottom: none;
+        }
+        
+        .project-title, .award-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--dark-color);
+            font-size: 1.1rem;
+        }
+        
+        .project-details, .award-details {
+            color: var(--light-text);
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+        
+        .award-date {
+            color: var(--secondary-color);
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .paper-item {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            text-indent: -20px;
+            font-size: 0.95rem;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+        
+        .badge-sci1 {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        .badge-sci2 {
+            background-color: #f39c12;
+            color: white;
+        }
+        
+        .badge-sci3 {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .badge-sci4 {
+            background-color: #2ecc71;
+            color: white;
+        }
+        
+        .badge-cited {
+            background-color: #9b59b6;
+            color: white;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 992px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            header {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px;
+            }
+            
+            .profile-img {
+                margin-right: 0;
+                margin-bottom: 25px;
+            }
+            
+            .tags {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            body {
+                padding: 10px;
+            }
+            
+            header {
+                padding: 20px;
+            }
+            
+            .header-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .header-content h2 {
+                font-size: 1.3rem;
+            }
+            
+            .content {
+                padding: 20px;
+                gap: 20px;
+            }
+            
+            section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="https://jsjxy.aqnu.edu.cn/__local/7/13/71/13BF8E461339BBD73373E2682B8_D2C8C8D5_1374D.png" alt="郑馨照片" class="profile-img">
+            <div class="header-content">
+                <h1>郑馨</h1>
+                <h2>博士，副教授，硕士生导师</h2>
+                <div class="contact-info">
+                    <i class="fas fa-envelope"></i>
+                    <span>zxaoyou@aqnu.edu.cn</span>
+                </div>
+                <div class="tags">
+                    <span class="tag">安徽省线上教学新秀</span>
+                    <span class="tag">安徽省"科技副总"</span>
+                    <span class="tag">计算机视觉</span>
+                    <span class="tag">显著性检测</span>
+                    <span class="tag">医学图像处理</span>
+                </div>
+            </div>
+        </header>
+        
+        <div class="content">
+            <div class="left-column">
+                <section id="education">
+                    <h3><i class="fas fa-graduation-cap"></i> 教育经历</h3>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2009.9 - 2014.12</div>
+                        <div class="timeline-title">华中科技大学</div>
+                        <div class="timeline-subtitle">控制科学与工程 博士（硕博连读）</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2005.9 - 2009.6</div>
+                        <div class="timeline-title">华中科技大学</div>
+                        <div class="timeline-subtitle">软件工程 学士</div>
+                    </div>
+                </section>
+                
+                <section id="experience">
+                    <h3><i class="fas fa-briefcase"></i> 工作经历</h3>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2020.01 - 现在</div>
+                        <div class="timeline-title">安庆师范大学</div>
+                        <div class="timeline-subtitle">计算机与信息学院，副教授</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2014.12 - 2019.12</div>
+                        <div class="timeline-title">安庆师范大学</div>
+                        <div class="timeline-subtitle">计算机与信息学院，讲师</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2021.12 - 2024.6</div>
+                        <div class="timeline-title">安庆师范大学</div>
+                        <div class="timeline-subtitle">校团委，副书记（挂职）</div>
+                    </div>
+                </section>
+                
+                <section id="research-projects">
+                    <h3><i class="fas fa-flask"></i> 主持科研项目</h3>
+                    <div class="project-item">
+                        <div class="project-title">大数据背景下第二课堂与第一课堂协同育人机制研究（2023AHQSNCZFZ014）</div>
+                        <div class="project-details">安徽省青少年成长与发展理论研究重点课题</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">基于视觉注意深度自学习的细胞检测方法研究（2023AH050489）</div>
+                        <div class="project-details">安徽高校自然科学研究重点项目</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">视觉注意与深度学习相结合的细胞检测方法研究（1908085MF194）</div>
+                        <div class="project-details">安徽省自然科学基金面上项目</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">医疗机器人研发-图像处理及相关算法研究（GXXT-2019-008）</div>
+                        <div class="project-details">安徽高校协同创新项目子课题</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">自监督学习的细胞图像分割模型及应用研究（KJ2016A439）</div>
+                        <div class="project-details">安徽省高校自然科学研究重点项目</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">铝合金压铸过程智能预警及产品自动检测识别技术攻关</div>
+                        <div class="project-details">安徽安簧机械股份有限公司</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">缺陷智能检测与分析平台</div>
+                        <div class="project-details">安徽沅瀚科技有限公司</div>
+                    </div>
+                </section>
+                
+                <section id="teaching-projects">
+                    <h3><i class="fas fa-chalkboard-teacher"></i> 主持教研项目</h3>
+                    <div class="project-item">
+                        <div class="project-title">人工智能（2024szsfkc107）</div>
+                        <div class="project-details">安徽省新时代育人质量工程项目（研究生教育）课程思政示范课程</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">新工科背景下的《人工智能》思政金课建设研究（2023jyjxggyjY193）</div>
+                        <div class="project-details">安徽省新时代育人质量工程项目（研究生教育）研究生教育教学改革研究重点项目</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">"五位、五育、五级"构建高校"第二课堂"育人体系（2022jxgl039）</div>
+                        <div class="project-details">安徽省质量工程教育教学管理一般项目</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">线上线下混合式和社会实践课程-数据结构（2020xsxxkc270）</div>
+                        <div class="project-details">安徽省质量工程项目</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">地方高校计算机科学与技术师范专业评估指标体系的探索与研究（2018jyxm1103）</div>
+                        <div class="project-details">安徽省质量工程项目</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">智慧课堂教学平台下的《数据结构》课程混合教学模式研究（2019aqnujyxm28）</div>
+                        <div class="project-details">校级质量工程项目</div>
+                    </div>
+                </section>
+            </div>
+            
+            <div class="right-column">
+                <section id="awards">
+                    <h3><i class="fas fa-trophy"></i> 教学奖励</h3>
+                    <div class="award-item">
+                        <div class="award-date">2025.08</div>
+                        <div class="award-title">安徽省第七届青年教师教学竞赛 二等奖</div>
+                        <div class="award-details">安徽省总工会、安徽省教育厅</div>
+                    </div>
+                    <div class="award-item">
+                        <div class="award-date">2025.07</div>
+                        <div class="award-title">中国高校计算机教育大会教学案例大赛 一等奖</div>
+                        <div class="award-details">全国高等学校计算机教育研究会</div>
+                    </div>
+                    <div class="award-item">
+                        <div class="award-date">2024.12</div>
+                        <div class="award-title">第六届中国计算机教育大会计算机类教学和实验案例 一等奖</div>
+                        <div class="award-details">教育部高等学校计算机类专业教学指导委员会</div>
+                    </div>
+                    <div class="award-item">
+                        <div class="award-date">2024.11</div>
+                        <div class="award-title">安徽省计算机学会2024年度优秀本科毕业设计（论文）优秀指导老师</div>
+                        <div class="award-details">安徽省计算机学会</div>
+                    </div>
+                    <div class="award-item">
+                        <div class="award-date">2024.11</div>
+                        <div class="award-title">第九届全国计算机类课程实验教学案例评选优秀案例 二等奖</div>
+                        <div class="award-details">国家级实验教学示范中心联席会计算机学科组</div>
+                    </div>
+                    <div class="award-item">
+                        <div class="award-date">2024.06</div>
+                        <div class="award-title">第四届全国高校教师教学创新大赛安徽省赛 三等奖</div>
+                        <div class="award-details">安徽省教育厅</div>
+                    </div>
+                    <div class="award-item">
+                        <div class="award-date">2024.06</div>
+                        <div class="award-title">安徽省教学成果奖 二等奖</div>
+                        <div class="award-details">安徽省教育厅</div>
+                    </div>
+                    <div class="award-item">
+                        <div class="award-date">2024.05</div>
+                        <div class="award-title">安庆师范大学教学成果奖 一等奖</div>
+                        <div class="award-details">安庆师范大学</div>
+                    </div>
+                    <div class="award-item">
+                        <div class="award-date">2024.01</div>
+                        <div class="award-title">安庆师范大学第四届教师教学创新大赛 一等奖</div>
+                        <div class="award-details">安庆师范大学</div>
+                    </div>
+                    <div class="award-item">
+                        <div class="award-date">2021.10</div>
+                        <div class="award-title">安徽省第五届青年教师教学竞赛 三等奖</div>
+                        <div class="award-details">安徽省总工会、安徽省教育厅</div>
+                    </div>
+                    <div class="award-item">
+                        <div class="award-date">2021.01</div>
+                        <div class="award-title">第二届长三角师范院校智慧教学大赛 二等奖</div>
+                        <div class="award-details">长三角师范院校教师智慧教学和师范生教学基本功大赛组委会</div>
+                    </div>
+                    <div class="award-item">
+                        <div class="award-date">2020.11</div>
+                        <div class="award-title">安徽省本科师范院校教师智慧教学大赛 二等奖</div>
+                        <div class="award-details">安徽省教育厅</div>
+                    </div>
+                    <div class="award-item">
+                        <div class="award-date">2019.08</div>
+                        <div class="award-title">安徽省第四届青年教师教学竞赛 二等奖</div>
+                        <div class="award-details">安徽省总工会、安徽省教育厅</div>
+                    </div>
+                </section>
+                
+                <section id="papers">
+                    <h3><i class="fas fa-file-alt"></i> 科研论文</h3>
+                    <div class="paper-item">
+                        <strong>Zheng X</strong>, Li Z, Liu D, et al. Spatial Attention-Guided Light Field Salient Object Detection Network with Implicit Neural Representation. <em>IEEE Transactions on Circuits and Systems for Video Technology</em>, 2024, 34(12): 12437-12449. 
+                        <span class="badge badge-sci1">SCI一区顶刊 IF:11.1</span>
+                    </div>
+                    <div class="paper-item">
+                        <strong>Zheng X</strong>, Xu Q, Zheng S, et al. Multiscale deformed attention networks for white blood cell detection. <em>Scientific Reports</em>, 2025, 15(1): 14591.
+                        <span class="badge badge-sci3">SCI三区</span>
+                    </div>
+                    <div class="paper-item">
+                        <strong>Zheng X</strong>, Wang B, Liu D, et al. A foreground-context dual-guided network for light-field salient object detection. <em>Signal Processing: Image Communication</em>, 2024, 128: 117165.
+                        <span class="badge badge-sci3">SCI三区 IF:3.4</span>
+                    </div>
+                    <div class="paper-item">
+                        <strong>Zheng X</strong>, Wang B, Ai L, et al. EDGE-Net: an edge-guided enhanced network for RGB-T salient object detection. <em>Journal of Electronic Imaging</em>, 2023, 32(6): 063032.
+                        <span class="badge badge-sci4">SCI四区 IF:1.1</span>
+                        <span class="badge badge-cited">被引4次</span>
+                    </div>
+                    <div class="paper-item">
+                        <strong>Zheng X</strong>, Tang P, Ai L, et al. White blood cell detection using saliency detection and CenterNet: A two‐stage approach. <em>Journal of biophotonics</em>, 2023, 16(3): e202200174.
+                        <span class="badge badge-sci2">SCI二区 IF:2.8</span>
+                        <span class="badge badge-cited">被引16次</span>
+                    </div>
+                    <div class="paper-item">
+                        Wu J, <strong>Zheng X</strong>*, Liu D, et al. WBC image segmentation based on residual networks and attentional mechanisms. <em>Computational Intelligence and Neuroscience</em>, 2022, 2022(1): 1610658.
+                        <span class="badge badge-sci2">SCI二区 IF:3.12</span>
+                        <span class="badge badge-cited">被引11次</span>
+                    </div>
+                    <div class="paper-item">
+                        <strong>Xin Zheng</strong>, Yong Wang, Guoyou Wang, Jianguo Liu. Fast and robust segmentation of white blood cell images by self-supervised learning. <em>Micron</em>, 2018, 107(4): 55-71.
+                        <span class="badge badge-sci3">SCI三区</span>
+                        <span class="badge badge-cited">被引278次</span>
+                    </div>
+                    <div class="paper-item">
+                        <strong>Xin Zheng</strong>, Yong Wang, Guoyou Wang*, Zhong Chen. A novel algorithm based on visual saliency attention for localization and segmentation in rapidly-stained leukocyte images. <em>Micron</em>, 2014, 56(1): 17-28.
+                        <span class="badge badge-sci3">SCI三区</span>
+                        <span class="badge badge-cited">被引30次</span>
+                    </div>
+                    <div class="paper-item">
+                        <strong>Xin Zheng</strong>, Guoyou Wang, Jianguo Liu. Cytoplasm enhancement operator of peripheral blood smear images that are instable-stained and overexposed. International Symposium on Multispectral Image Processing and Pattern Recognition, Enshi, China, 2015.10.31-2015.11.1
+                    </div>
+                    <div class="paper-item">
+                        <strong>郑馨</strong>, 艾列富, 刘奎, 苏本跃. 结合全局和局部灰度变化的显微图像自动聚焦函数. <em>激光与光电子学进展</em>, 2017, 54(08): 252-259
+                    </div>
+                    <div class="paper-item">
+                        <strong>郑馨</strong>, 王勇, 汪国有. EM聚类和SVM自动学习的白细胞图像分割算法数据采集与处理. <em>数据采集与处理</em>, 2013, 28(05): 614-619
+                    </div>
+                </section>
+                
+                <section id="patents">
+                    <h3><i class="fas fa-certificate"></i> 授权发明专利</h3>
+                    <div class="project-item">
+                        <div class="project-title">一种光场图像显著性检测方法（ZL202311535437.0）</div>
+                        <div class="project-details">中国发明专利，2024.6</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">Method for detecting saliency of light field images（F/PT/C/2023/10413）</div>
+                        <div class="project-details">国际发明专利，2024年</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">细胞图像偏色校正方法（201710741651X）</div>
+                        <div class="project-details">中国发明专利</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">粗精调焦的医学显微图像清晰度评价方法（201610922544.2）</div>
+                        <div class="project-details">中国发明专利</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">彩色图像自动聚焦方法（201610922542.3）</div>
+                        <div class="project-details">中国发明专利</div>
+                    </div>
+                </section>
+                
+                <section id="books">
+                    <h3><i class="fas fa-book"></i> 出版教材</h3>
+                    <div class="project-item">
+                        <div class="project-title">案例式数据结构实验指导（C语言版）</div>
+                        <div class="project-details">郑馨，程玉胜主编，中国科学技术大学出版社，2024年8月，ISBN: 978-7-312-06032-8</div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2024 郑馨 - 安庆师范大学计算机与信息学院</p>
+        </footer>
+    </div>
+</body>
+</html>
